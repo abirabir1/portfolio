@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+/* Le thème sombre est le thème par défaut ; le thème clair s'active via data-theme="light" sur <html>. */
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+:root {
+  --bg: #070b1a;
+  --bg-soft: #0c1226;
+  --surface: rgb(255 255 255 / 0.04);
+  --surface-strong: rgb(255 255 255 / 0.07);
+  --border: rgb(255 255 255 / 0.09);
+  --border-strong: rgb(255 255 255 / 0.16);
+  --fg: #e8eaf6;
+  --fg-muted: #a3a9c7;
+  --fg-subtle: #7b82a6;
+  --violet: #8b5cf6;
+  --violet-soft: #a78bfa;
+  --pink: #ec4899;
+  --pink-soft: #f472b6;
+  --cyan: #22d3ee;
+  --gold: #fbbf24;
+  --silver: #cbd5e1;
+  --bronze: #f59e5b;
+  --glow: rgb(139 92 246 / 0.35);
+  --net-node: 167 139 250;
+  --net-line: 139 92 246;
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #f7f7fc;
+  --bg-soft: #eef0fa;
+  --surface: rgb(255 255 255 / 0.75);
+  --surface-strong: #ffffff;
+  --border: rgb(30 27 75 / 0.1);
+  --border-strong: rgb(30 27 75 / 0.18);
+  --fg: #141632;
+  --fg-muted: #4a4f72;
+  --fg-subtle: #6b7094;
+  --violet: #7c3aed;
+  --violet-soft: #6d28d9;
+  --pink: #db2777;
+  --pink-soft: #be185d;
+  --cyan: #0891b2;
+  --gold: #b45309;
+  --silver: #64748b;
+  --bronze: #c2410c;
+  --glow: rgb(124 58 237 / 0.18);
+  --net-node: 124 58 237;
+  --net-line: 124 58 237;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-violet: var(--violet);
+  --color-violet-soft: var(--violet-soft);
+  --color-pink: var(--pink);
+  --color-pink-soft: var(--pink-soft);
+  --color-cyan: var(--cyan);
+  --color-gold: var(--gold);
+  --color-silver: var(--silver);
+  --color-bronze: var(--bronze);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgb(139 92 246 / 0.35);
+}
+
+:focus-visible {
+  outline: 2px solid var(--violet-soft);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(100deg, var(--violet-soft), var(--pink-soft));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gradient-brand {
+  background-image: linear-gradient(110deg, var(--violet), var(--pink));
+}
+
+@utility glass {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Bordure en dégradé qui s'illumine au survol (cartes) */
+@utility glow-border {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(130deg, var(--violet), var(--pink), var(--cyan));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  &:hover::before,
+  &:focus-within::before {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Grille de données discrète en arrière-plan */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
