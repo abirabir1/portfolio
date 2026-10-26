@@ -139,9 +139,9 @@ export const profile = {
     linkedin: "https://linkedin.com/in/abir-el-abed",
     github: "https://github.com/abirabir1",
   },
-  siteUrl: "", // À AJOUTER après le déploiement Vercel (ex. https://abir-el-abed.vercel.app)
-  /** ID Formspree (https://formspree.io) — À AJOUTER pour activer le formulaire */
-  formspreeId: "",
+  siteUrl: "https://abir-el-abed.vercel.app",
+  /** ID Formspree (https://formspree.io/f/<id>) */
+  formspreeId: "mjyyyrzg",
 };
 
 export const stats: Stat[] = [
@@ -468,6 +468,7 @@ export const projects: Project[] = [
     categories: ["llm"],
     tags: ["NLP", "T5", "LLMs", "RAG"],
     github: "",
+    privateNote: { fr: "Code confidentiel · démo sur demande", en: "Confidential code · demo on request" },
   },
   {
     id: "heart-disease",
@@ -504,6 +505,7 @@ export const projects: Project[] = [
     categories: ["dl"],
     tags: ["Deep Learning", "CNN", "ResNet101", "Computer Vision"],
     github: "",
+    privateNote: { fr: "Code confidentiel · démo sur demande", en: "Confidential code · demo on request" },
   },
   {
     id: "hydroponics",
@@ -523,6 +525,7 @@ export const projects: Project[] = [
     categories: ["ml"],
     tags: ["IA", "Hackathon", "Hydroponie"],
     github: "",
+    privateNote: { fr: "Code confidentiel · démo sur demande", en: "Confidential code · demo on request" },
   },
 ];
 
