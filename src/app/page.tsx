@@ -11,24 +11,49 @@ import { Hero } from "@/components/sections/Hero";
 import { Projects } from "@/components/sections/Projects";
 import { Skills } from "@/components/sections/Skills";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Suspense } from "react";
 
+/*
+ * Chaque <Suspense> crée une frontière d'hydratation : React active les sections une par une
+ * en rendant la main au navigateur entre deux, au lieu d'un long blocage avant le premier affichage.
+ */
 export default function Home() {
   return (
     <>
       <SiteBackground />
       <SkipLink />
-      <Navbar />
+      <Suspense>
+        <Navbar />
+      </Suspense>
       <main id="contenu" tabIndex={-1} className="outline-none">
-        <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <Hackathons />
-        <Certifications />
-        <Skills />
-        <Contact />
+        <Suspense>
+          <Hero />
+        </Suspense>
+        <Suspense>
+          <About />
+        </Suspense>
+        <Suspense>
+          <Experience />
+        </Suspense>
+        <Suspense>
+          <Projects />
+        </Suspense>
+        <Suspense>
+          <Hackathons />
+        </Suspense>
+        <Suspense>
+          <Certifications />
+        </Suspense>
+        <Suspense>
+          <Skills />
+        </Suspense>
+        <Suspense>
+          <Contact />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense>
+        <Footer />
+      </Suspense>
       <JsonLd />
     </>
   );

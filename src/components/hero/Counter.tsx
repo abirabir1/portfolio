@@ -1,10 +1,12 @@
 "use client";
 
-import { animate, useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import type { Locale } from "@/data/portfolio";
 
 type CounterProps = { value: number; suffix?: string; locale: Locale };
+
+const DURATION = 1800;
+const easeOutExpo = (t: number) => (t === 1 ? 1 : 1 - 2 ** (-10 * t));
 
 /**
  * Compteur animé qui démarre lorsqu'il entre dans l'écran.
@@ -13,25 +15,39 @@ type CounterProps = { value: number; suffix?: string; locale: Locale };
 export function Counter({ value, suffix = "", locale }: CounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const numberRef = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true });
-  const reduce = useReducedMotion();
   const format = new Intl.NumberFormat(locale === "fr" ? "fr-FR" : "en-US");
 
   useEffect(() => {
     const el = numberRef.current;
-    if (!inView || !el) return;
+    if (!ref.current || !el) return;
+    const fmt = new Intl.NumberFormat(locale === "fr" ? "fr-FR" : "en-US");
     const render = (v: number) => {
-      el.textContent = format.format(Math.round(v)) + suffix;
+      el.textContent = fmt.format(Math.round(v)) + suffix;
     };
-    if (reduce) {
-      render(value);
-      return;
-    }
-    const controls = animate(0, value, { duration: 1.8, ease: [0.16, 1, 0.3, 1], onUpdate: render });
-    return () => controls.stop();
-    // format dépend uniquement de locale
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inView, value, suffix, locale, reduce]);
+    let frame = 0;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        render(value);
+        return;
+      }
+      const start = performance.now();
+      const tick = (now: number) => {
+        const t = Math.min((now - start) / DURATION, 1);
+        render(value * easeOutExpo(t));
+        if (t < 1) frame = requestAnimationFrame(tick);
+      };
+      frame = requestAnimationFrame(tick);
+    });
+    observer.observe(ref.current);
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [value, suffix, locale]);
 
   return (
     <span ref={ref}>

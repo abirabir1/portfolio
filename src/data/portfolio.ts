@@ -212,8 +212,8 @@ export const experience: TimelineEntry[] = [
     },
     bullets: [
       {
-        fr: "Pipeline multi-agents (Analyse → Décision → Rapport) basé sur des LLMs, sur 266 000+ enregistrements scolaires",
-        en: "LLM-based multi-agent pipeline (Analysis → Decision → Report) over 266,000+ school records",
+        fr: "Pipeline multi-agents (Analyse › Décision › Rapport) basé sur des LLMs, sur 266 000+ enregistrements scolaires",
+        en: "LLM-based multi-agent pipeline (Analysis › Decision › Report) over 266,000+ school records",
       },
       {
         fr: "Intégration multi-fournisseurs de LLMs (Ollama, Groq, Gemini) avec benchmark comparatif de 4 modèles",
@@ -434,8 +434,8 @@ export const projects: Project[] = [
         en: "Intelligent platform for school data analysis and automated educational report generation, built at EducaNet (February – August 2026).",
       },
       {
-        fr: "Un pipeline multi-agents (Analyse → Décision → Rapport) s'appuie sur plusieurs fournisseurs de LLMs (Ollama, Groq, Gemini), comparés lors d'un benchmark de 4 modèles. Les 540+ rapports PDF sont générés avec ReportLab, avec un taux de réussite supérieur à 95 %.",
-        en: "A multi-agent pipeline (Analysis → Decision → Report) relies on several LLM providers (Ollama, Groq, Gemini), compared in a 4-model benchmark. The 540+ PDF reports are generated with ReportLab, with a success rate above 95%.",
+        fr: "Un pipeline multi-agents (Analyse › Décision › Rapport) s'appuie sur plusieurs fournisseurs de LLMs (Ollama, Groq, Gemini), comparés lors d'un benchmark de 4 modèles. Les 540+ rapports PDF sont générés avec ReportLab, avec un taux de réussite supérieur à 95 %.",
+        en: "A multi-agent pipeline (Analysis › Decision › Report) relies on several LLM providers (Ollama, Groq, Gemini), compared in a 4-model benchmark. The 540+ PDF reports are generated with ReportLab, with a success rate above 95%.",
       },
       {
         fr: "Un chatbot RAG et un tableau de bord interactif (HTML/JS/Chart.js) couvrent 510 élèves, 27 classes et 6 niveaux, sur une architecture de base de données multi-établissements.",
@@ -511,14 +511,14 @@ export const projects: Project[] = [
     id: "hydroponics",
     icon: "sprout",
     title: { fr: "Hydroponie intelligente", en: "Smart hydroponics" },
-    highlight: { fr: "2ᵉ place · AI 4 The Blue Horizons", en: "2nd place · AI 4 The Blue Horizons" },
+    highlight: { fr: "2e place · AI 4 The Blue Horizons", en: "2nd place · AI 4 The Blue Horizons" },
     summary: {
-      fr: "Solution IA pour l'hydroponie, réalisée en équipe lors du hackathon AI 4 The Blue Horizons (2ᵉ place).",
+      fr: "Solution IA pour l'hydroponie, réalisée en équipe lors du hackathon AI 4 The Blue Horizons (2e place).",
       en: "AI solution for hydroponics, built as a team at the AI 4 The Blue Horizons hackathon (2nd place).",
     },
     description: [
       {
-        fr: "Solution d'intelligence artificielle appliquée à l'hydroponie, conçue en équipe lors du hackathon AI 4 The Blue Horizons, où elle a obtenu la 2ᵉ place.",
+        fr: "Solution d'intelligence artificielle appliquée à l'hydroponie, conçue en équipe lors du hackathon AI 4 The Blue Horizons, où elle a obtenu la 2e place.",
         en: "Artificial intelligence solution applied to hydroponics, designed as a team during the AI 4 The Blue Horizons hackathon, where it won 2nd place.",
       },
     ],
@@ -534,7 +534,7 @@ export const hackathons: Hackathon[] = [
     id: "blue-horizons",
     icon: "sprout",
     rank: 2,
-    rankLabel: { fr: "2ᵉ place", en: "2nd place" },
+    rankLabel: { fr: "2e place", en: "2nd place" },
     title: { fr: "Hackathon AI 4 The Blue Horizons", en: "AI 4 The Blue Horizons Hackathon" },
     summary: {
       fr: "Solution IA pour l'hydroponie, réalisée en équipe.",
@@ -546,7 +546,7 @@ export const hackathons: Hackathon[] = [
   {
     id: "ai4-new-generation",
     rank: 3,
-    rankLabel: { fr: "3ᵉ place", en: "3rd place" },
+    rankLabel: { fr: "3e place", en: "3rd place" },
     title: {
       fr: "Hackathon national AI 4 The New Generation",
       en: "AI 4 The New Generation national hackathon",

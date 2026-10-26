@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Database, FileText } from "lucide-react";
 import { Fragment } from "react";
 import { usePreferences } from "@/components/providers/PreferencesProvider";
@@ -15,13 +15,13 @@ function Connector({ delay }: { delay: number }) {
     >
       {/* Particules masquées en CSS si « réduire les animations » : même HTML côté serveur et client */}
       {/* vertical sur mobile */}
-      <motion.span
+      <m.span
         className="absolute left-1/2 size-1.5 -translate-x-1/2 rounded-full bg-cyan shadow-[0_0_8px_var(--cyan)] motion-reduce:hidden sm:hidden"
         animate={{ top: ["0%", "100%"] }}
         transition={{ duration: 1.6, repeat: Infinity, delay, ease: "easeInOut" }}
       />
       {/* horizontal à partir de sm */}
-      <motion.span
+      <m.span
         className="absolute top-1/2 hidden size-1.5 -translate-y-1/2 rounded-full bg-cyan shadow-[0_0_8px_var(--cyan)] sm:block motion-reduce:sm:hidden"
         animate={{ left: ["0%", "100%"] }}
         transition={{ duration: 1.6, repeat: Infinity, delay, ease: "easeInOut" }}

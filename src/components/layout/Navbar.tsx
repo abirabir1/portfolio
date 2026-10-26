@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { usePreferences } from "@/components/providers/PreferencesProvider";
@@ -98,7 +98,7 @@ export function Navbar() {
                 }`}
               >
                 {active === item.id && (
-                  <motion.span
+                  <m.span
                     layoutId="nav-pill"
                     className="absolute inset-0 -z-10 rounded-full bg-surface-strong"
                     transition={{ type: "spring", stiffness: 380, damping: 32 }}
@@ -126,7 +126,7 @@ export function Navbar() {
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             id="mobile-menu"
             role="dialog"
             aria-modal="true"
@@ -152,7 +152,7 @@ export function Navbar() {
             </div>
             <ul className="mt-6 flex flex-col gap-1 px-7">
               {nav.map((item, i) => (
-                <motion.li
+                <m.li
                   key={item.id}
                   initial={{ opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -167,11 +167,11 @@ export function Navbar() {
                   >
                     {t(item.label)}
                   </a>
-                </motion.li>
+                </m.li>
               ))}
             </ul>
             <div className="mt-8 px-7">{controls}</div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </header>

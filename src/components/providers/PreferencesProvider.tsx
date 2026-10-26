@@ -1,6 +1,6 @@
 "use client";
 
-import { MotionConfig } from "framer-motion";
+import { LazyMotion, MotionConfig } from "framer-motion";
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import type { L, Locale } from "@/data/portfolio";
 
@@ -16,6 +16,8 @@ type Preferences = {
 };
 
 const PreferencesContext = createContext<Preferences | null>(null);
+
+const loadMotionFeatures = () => import("@/lib/motion-features").then((mod) => mod.default);
 
 const LOCALE_KEY = "abir-locale";
 const THEME_KEY = "abir-theme";
@@ -74,7 +76,12 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
   return (
     <PreferencesContext.Provider value={value}>
       {/* Respecte « réduire les animations » sans changer le HTML rendu (pas d'écart serveur / client) */}
-      <MotionConfig reducedMotion="user">{children}</MotionConfig>
+      <MotionConfig reducedMotion="user">
+        {/* Composants `m` légers ; le moteur d'animation arrive dans un fichier séparé, chargé ensuite */}
+        <LazyMotion features={loadMotionFeatures} strict>
+          {children}
+        </LazyMotion>
+      </MotionConfig>
     </PreferencesContext.Provider>
   );
 }

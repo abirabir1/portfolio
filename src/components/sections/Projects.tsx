@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { useState } from "react";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { ProjectModal } from "@/components/projects/ProjectModal";
@@ -35,7 +35,7 @@ export function Projects() {
                 }`}
               >
                 {active && (
-                  <motion.span
+                  <m.span
                     layoutId="project-filter"
                     className="absolute inset-0 -z-10 rounded-full bg-gradient-brand"
                     transition={{ type: "spring", stiffness: 380, damping: 32 }}
@@ -48,10 +48,10 @@ export function Projects() {
         </div>
       </Reveal>
 
-      <motion.ul layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <m.ul layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout" initial={false}>
           {visible.map((project) => (
-            <motion.li
+            <m.li
               key={project.id}
               layout
               initial={{ opacity: 0, scale: 0.96 }}
@@ -61,10 +61,10 @@ export function Projects() {
               className={project.featured ? "sm:col-span-2 lg:col-span-3" : ""}
             >
               <ProjectCard project={project} onOpen={() => setSelected(project)} />
-            </motion.li>
+            </m.li>
           ))}
         </AnimatePresence>
-      </motion.ul>
+      </m.ul>
 
       <ProjectModal project={selected} onClose={() => setSelected(null)} />
     </Section>
