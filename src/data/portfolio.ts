@@ -136,7 +136,7 @@ export const profile = {
   location: { fr: "Tunisie", en: "Tunisia" } satisfies L,
   email: "abirabed969@gmail.com",
   socials: {
-    linkedin: "https://linkedin.com/in/abir-el-abed",
+    linkedin: "https://www.linkedin.com/in/abir-elabed-028482226/",
     github: "https://github.com/abirabir1",
   },
   siteUrl: "https://abir-el-abed.vercel.app",

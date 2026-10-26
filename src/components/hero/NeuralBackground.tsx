@@ -90,17 +90,26 @@ export function NeuralBackground() {
       if (running) frame = requestAnimationFrame(step);
     };
 
-    readColors();
-    resize();
-    if (reduceMotion) {
-      draw();
-    } else {
-      frame = requestAnimationFrame(step);
-    }
+    // Démarrage différé : laisse le navigateur finir l'affichage initial et l'hydratation
+    let started = false;
+    const start = () => {
+      started = true;
+      readColors();
+      resize();
+      if (reduceMotion) {
+        draw();
+      } else if (running) {
+        frame = requestAnimationFrame(step);
+      }
+    };
+    const startTimer = window.setTimeout(start, 2000);
 
     // Pause lorsque le hero n'est plus visible
     const visibility = new IntersectionObserver(([entry]) => {
-      if (reduceMotion) return;
+      if (reduceMotion || !started) {
+        running = entry.isIntersecting;
+        return;
+      }
       if (entry.isIntersecting && !running) {
         running = true;
         frame = requestAnimationFrame(step);
@@ -114,17 +123,19 @@ export function NeuralBackground() {
     // Suit les changements de thème (attribut data-theme)
     const themeObserver = new MutationObserver(() => {
       readColors();
-      if (reduceMotion) draw();
+      if (reduceMotion && started) draw();
     });
     themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
     const onResize = () => {
+      if (!started) return;
       resize();
       if (reduceMotion) draw();
     };
     window.addEventListener("resize", onResize);
 
     return () => {
+      window.clearTimeout(startTimer);
       running = false;
       cancelAnimationFrame(frame);
       visibility.disconnect();

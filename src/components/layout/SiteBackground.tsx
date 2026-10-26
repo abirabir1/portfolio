@@ -13,7 +13,6 @@ export function SiteBackground() {
         alt=""
         fill
         sizes="100vw"
-        quality={70}
         className="object-cover object-[50%_35%] opacity-55 light:opacity-[0.12] light:saturate-50"
       />
       {/* Voile : plus dense en bas pour les sections longues */}

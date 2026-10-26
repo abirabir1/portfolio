@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowDown, Download, MapPin } from "lucide-react";
 import Image from "next/image";
 import { useMemo } from "react";
@@ -16,12 +15,8 @@ export function Hero() {
   const { t, locale } = usePreferences();
   const words = useMemo(() => profile.typewriter.map((w) => w[locale]), [locale]);
 
-  // Déplacement supprimé automatiquement si « réduire les animations » (MotionConfig global)
-  const fadeUp = (delay: number) => ({
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] as const },
-  });
+  // Apparition en CSS (globals.css) : le contenu est peint sans attendre le JavaScript
+  const delay = (seconds: number) => ({ "--d": `${seconds}s` }) as React.CSSProperties;
 
   return (
     <section id="accueil" aria-label={profile.name} className="relative isolate overflow-hidden pt-28 pb-16 sm:pt-36">
@@ -36,50 +31,48 @@ export function Hero() {
 
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:px-8">
         <div className="order-2 text-center lg:order-1 lg:text-left">
-          <motion.p
-            {...fadeUp(0)}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3.5 py-1.5 text-xs font-medium text-emerald-300 light:text-emerald-700"
+          <p
+            style={delay(0)}
+            className="hero-fade-up mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3.5 py-1.5 text-xs font-medium text-emerald-300 light:text-emerald-700"
           >
             <span className="relative flex size-2">
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-60" />
               <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
             </span>
             {t(profile.availability)}
-          </motion.p>
+          </p>
 
-          <motion.p {...fadeUp(0.05)} className="font-mono text-sm text-cyan">
+          <p style={delay(0.05)} className="hero-fade-up font-mono text-sm text-cyan">
             {t(ui.hero.greeting)}
-          </motion.p>
-          <motion.h1
-            {...fadeUp(0.1)}
-            className="mt-2 font-display text-5xl font-bold tracking-tight text-fg sm:text-6xl lg:text-7xl"
+          </p>
+          <h1 className="hero-rise mt-2 font-display text-5xl font-bold tracking-tight text-fg sm:text-6xl lg:text-7xl"
           >
             {profile.name}
-          </motion.h1>
-          <motion.p {...fadeUp(0.18)} className="mt-4 font-display text-lg font-medium text-fg sm:text-xl">
+          </h1>
+          <p style={delay(0.18)} className="hero-fade-up mt-4 font-display text-lg font-medium text-fg sm:text-xl">
             {t(profile.role)}
-          </motion.p>
+          </p>
 
-          <motion.p {...fadeUp(0.24)} className="mt-5 min-h-[2.25rem] font-display text-2xl font-semibold sm:text-3xl">
+          <p style={delay(0.24)} className="hero-fade-up mt-5 min-h-[2.25rem] font-display text-2xl font-semibold sm:text-3xl">
             <span className="mr-2 text-fg-subtle">{t(ui.hero.specialisedIn)}</span>
             <Typewriter key={locale} words={words} />
-          </motion.p>
+          </p>
 
-          <motion.p {...fadeUp(0.3)} className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-fg-muted sm:text-lg lg:mx-0">
+          <p style={delay(0.3)} className="hero-fade-up mx-auto mt-6 max-w-xl text-base leading-relaxed text-fg-muted sm:text-lg lg:mx-0">
             {t(profile.tagline)}
-          </motion.p>
+          </p>
 
-          <motion.p
-            {...fadeUp(0.34)}
-            className="mt-4 inline-flex items-center gap-1.5 text-sm text-fg-subtle"
+          <p
+            style={delay(0.34)}
+            className="hero-fade-up mt-4 inline-flex items-center gap-1.5 text-sm text-fg-subtle"
           >
             <MapPin className="size-4 text-pink" aria-hidden />
             {t(profile.location)}
-          </motion.p>
+          </p>
 
-          <motion.div
-            {...fadeUp(0.4)}
-            className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start"
+          <div
+            style={delay(0.4)}
+            className="hero-fade-up mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-start"
           >
             <a
               href="#projets"
@@ -96,19 +89,15 @@ export function Hero() {
               <Download className="size-4" aria-hidden />
               {t(ui.hero.downloadCv)}
             </a>
-          </motion.div>
+          </div>
 
-          <motion.div {...fadeUp(0.46)} className="mt-6 flex justify-center lg:justify-start">
+          <div style={delay(0.46)} className="hero-fade-up mt-6 flex justify-center lg:justify-start">
             <SocialLinks />
-          </motion.div>
+          </div>
         </div>
 
         {/* Photo dans un cadre arrondi avec anneau en dégradé */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="relative order-1 mx-auto w-64 sm:w-80 lg:order-2 lg:w-full lg:max-w-md"
+        <div className="hero-zoom relative order-1 mx-auto w-64 sm:w-80 lg:order-2 lg:w-full lg:max-w-md"
         >
           <div aria-hidden className="absolute -inset-6 rounded-[2.5rem] bg-gradient-brand opacity-30 blur-3xl" />
           <div className="relative rounded-[2rem] bg-[linear-gradient(140deg,var(--violet),var(--pink),var(--cyan))] p-[2px] shadow-2xl shadow-violet/20">
@@ -127,14 +116,14 @@ export function Hero() {
             <p className="font-mono text-[11px] tracking-wider text-fg-subtle uppercase">LLMs · RAG · XAI</p>
             <p className="font-display text-sm font-semibold text-fg">{t(profile.shortRole)}</p>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Compteurs */}
       <div className="mx-auto mt-16 max-w-6xl px-4 sm:mt-20 sm:px-6 lg:px-8">
-        <motion.dl
-          {...fadeUp(0.55)}
-          className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border lg:grid-cols-4"
+        <dl
+          style={delay(0.55)}
+          className="hero-fade-up grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border lg:grid-cols-4"
         >
           {stats.map((stat) => (
             <div key={stat.label.fr} className="flex flex-col gap-1 bg-bg-soft/95 px-5 py-5 sm:px-6">
@@ -144,7 +133,7 @@ export function Hero() {
               </dd>
             </div>
           ))}
-        </motion.dl>
+        </dl>
       </div>
     </section>
   );

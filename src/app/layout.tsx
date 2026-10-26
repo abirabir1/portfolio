@@ -8,7 +8,13 @@ import "./globals.css";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
 const spaceGrotesk = Space_Grotesk({ variable: "--font-space-grotesk", subsets: ["latin"], display: "swap" });
-const jetbrainsMono = JetBrains_Mono({ variable: "--font-jetbrains-mono", subsets: ["latin"], display: "swap" });
+// Police secondaire (petits libellés) : pas préchargée, pour laisser la bande passante à la photo du hero
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  display: "swap",
+  preload: false,
+});
 
 const title = `${profile.name} — ${profile.role.fr}`;
 const description =

@@ -163,6 +163,37 @@ body {
   }
 }
 
+/*
+ * Apparition du hero en CSS pur : visible dès le premier affichage, sans attendre le JavaScript
+ * (bon pour le LCP). Délai via --d ; « réduire les animations » est géré par la règle globale.
+ */
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+@keyframes hero-rise {
+  from {
+    transform: translateY(14px);
+  }
+}
+@keyframes hero-zoom {
+  from {
+    transform: scale(0.94);
+  }
+}
+@utility hero-fade-up {
+  animation: hero-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s) both;
+}
+/* Titre et photo (candidats LCP) : mouvement sans fondu, donc peints immédiatement */
+@utility hero-rise {
+  animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@utility hero-zoom {
+  animation: hero-zoom 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* Grille de données discrète en arrière-plan */
 @utility bg-grid {
   background-image:
