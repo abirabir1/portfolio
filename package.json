@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "assets": "node scripts/build-assets.mjs"
+    "assets": "node scripts/build-assets.mjs",
+    "cv": "node --experimental-strip-types --no-warnings scripts/build-cv.mjs"
   },
   "dependencies": {
     "framer-motion": "^14.5.0",
@@ -21,6 +22,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "qrcode-generator": "^2.0.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
