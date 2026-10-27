@@ -23,8 +23,8 @@ const github = (id) => projects.find((p) => p.id === id)?.github ?? "";
 
 // Photo ronde : visage et épaules
 const photo = await sharp(path.join(root, "public", profile.photo.src))
-  .extract({ left: 62, top: 0, width: 900, height: 900 })
-  .resize(320)
+  .extract({ left: 132, top: 20, width: 760, height: 760 })
+  .resize(400)
   .jpeg({ quality: 86 })
   .toBuffer();
 const photoUri = `data:image/jpeg;base64,${photo.toString("base64")}`;
@@ -51,8 +51,8 @@ const html = `<!doctype html>
   b { font-weight: bold; }
 
   /* En-tête : photo · identité · QR code */
-  .head { display: grid; grid-template-columns: 28mm 1fr 24mm; align-items: center; gap: 3mm; }
-  .photo { width: 28mm; height: 28mm; border-radius: 50%; object-fit: cover; }
+  .head { display: grid; grid-template-columns: 34mm 1fr 24mm; align-items: center; gap: 3mm; }
+  .photo { width: 34mm; height: 34mm; border-radius: 50%; object-fit: cover; }
   .id { text-align: center; white-space: nowrap; }
   .id p { font-size: 9.3pt; }
   h1 { font-size: 21pt; font-weight: bold; letter-spacing: 0.04em; line-height: 1.1; }
@@ -65,7 +65,7 @@ const html = `<!doctype html>
   .qr svg path, .qr svg rect[fill="black"] { fill: var(--ink); }
   .qr span { margin-top: 1mm; font-size: 7.5pt; font-style: italic; text-align: center; line-height: 1.15; }
 
-  .intro { margin-top: 2mm; text-align: justify; }
+  .intro { margin-top: 1.6mm; text-align: justify; }
 
   h2 { margin-top: 1.6mm; margin-bottom: 0.7mm; font-size: 10.8pt; font-weight: normal; color: var(--blue); border-bottom: 0.8px solid var(--ink); padding-bottom: 0.2mm; break-after: avoid; }
   .row { display: flex; justify-content: space-between; gap: 4mm; }
@@ -92,7 +92,8 @@ const html = `<!doctype html>
       <p class="title">INGÉNIEURE IA</p>
       <p class="tags">IA | DATA SCIENCE | IA GÉNÉRATIVE | SYSTÈMES MULTI-AGENTS</p>
       <p class="contact">Tunisie<span class="sep">|</span>${link(`tel:${phone.replace(/\s/g, "")}`, phone).replace(/<a /, '<a style="color:inherit" ')}<span class="sep">|</span>${link(`mailto:${profile.email}`, profile.email)}</p>
-      <p>${link(profile.socials.linkedin)}<span class="sep">|</span>${link(profile.socials.github)}<span class="sep">|</span>${link(profile.siteUrl)}</p>
+      <p>${link(profile.socials.linkedin)}<span class="sep">|</span>${link(profile.socials.github)}</p>
+      <p>Portfolio : ${link(profile.siteUrl)}</p>
     </div>
     <a class="qr" href="${profile.siteUrl}">${qrSvg}<span>Scannez pour voir<br>mon portfolio</span></a>
   </header>
