@@ -26,7 +26,7 @@ Autres commandes :
 | `npm run start` | Sert le build de production en local |
 | `npm run lint` | Vérifie le code avec ESLint |
 | `npm run assets` | Régénère les images recadrées de Smart Finance et l'image Open Graph |
-| `npm run cv` | Régénère le CV PDF (`public/cv/`) à partir de `src/data/portfolio.ts`, avec photo et QR code vers le site (nécessite Google Chrome) |
+| `npm run cv` | Régénère le CV PDF (`public/cv/`) : texte dans `scripts/build-cv.mjs`, liens repris de `src/data/portfolio.ts`, photo ronde et QR code vers le site (nécessite Google Chrome) |
 
 ---
 
