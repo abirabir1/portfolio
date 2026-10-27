@@ -128,9 +128,9 @@ export const profile = {
   /** Photo de la section À propos */
   aboutPhoto: {
     src: "/profil/photo-abir.png",
-    alt: { fr: "Abir El Abed, bras croisés, en tenue professionnelle", en: "Abir El Abed, arms crossed, in professional attire" },
-    width: 434,
-    height: 515,
+    alt: { fr: "Portrait d'Abir El Abed, souriante, en tenue professionnelle", en: "Portrait of Abir El Abed, smiling, in professional attire" },
+    width: 960,
+    height: 1280,
   } satisfies GalleryImage,
   cv: "/cv/CV-Abir-El-Abed.pdf",
   location: { fr: "Tunisie", en: "Tunisia" } satisfies L,

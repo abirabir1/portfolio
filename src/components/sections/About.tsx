@@ -15,7 +15,7 @@ export function About() {
       <div className="grid gap-12 lg:grid-cols-[1fr_1.5fr] lg:gap-16">
         <Reveal className="mx-auto w-full max-w-sm">
           <div className="glass glow-border relative overflow-hidden rounded-3xl p-2">
-            <div className="relative aspect-[434/515] overflow-hidden rounded-2xl bg-white">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-white">
               <Image
                 src={profile.aboutPhoto.src}
                 alt={t(profile.aboutPhoto.alt)}
